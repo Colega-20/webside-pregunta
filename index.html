@@ -12,7 +12,7 @@
             /* Estilos generales */
             body {
             cursor: none;
-            background: #071427ea;
+            background: #071427f5;
             color: white;
             font-family: Arial, sans-serif;
             display: flex;
@@ -90,7 +90,7 @@
             .spotlight {
             position: fixed;
             width: 100%;
-            background-image: radial-gradient(circle, transparent 50px, #0b1522ab 20%);
+            background-image: radial-gradient(circle, transparent 100px, rgba(11, 21, 34, 0.568) 150px);
             height: 100vh;
             background-repeat: repeat-y;
             display: flex;
@@ -99,7 +99,7 @@
 
          /* Marca de agua */
             #watermark, #watermark2 {
-            position: absolute;
+            position: fixed;
             color: rgba(255, 255, 255, 0.5);
             font-size: 14px;
             transform: rotate(0deg);
@@ -125,7 +125,7 @@
             color: rgba(255, 255, 255, 0.5);
             padding: 5px 10px;
             border-radius: 5px;
-            font-size: 18px;
+            font-size: 16px;
             font-family: Arial, sans-serif;
             pointer-events: none;
         }
@@ -164,8 +164,8 @@
             // Configuración para dispositivos móviles
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
             intervalo = 300;
-            watermark.style.fontSize = '20px';
-            watermark2.style.fontSize = '20px';
+            watermark.style.fontSize = '16px';
+            watermark2.style.fontSize = '16px';
             }
     
             // Seguir el cursor
