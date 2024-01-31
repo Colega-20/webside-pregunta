@@ -4,15 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X=UA-compatible" content="IE=edge">
-    <link rel="icon" href="pregunta.png">
     <title>Pregunta Especial</title>
-     
-    <style>
-            /* Estilos generales */
-            body {
-            cursor: none;
-            background-color: rgba(18, 34, 54, 0.959);
+    
+<style>
+        body {
+            cursor: url('1mouse.png'), auto;
+            background: #0b1522;
             color: white;
             font-family: Arial, sans-serif;
             display: flex;
@@ -23,197 +20,138 @@
             margin: 0;
             overflow: hidden;
         }
-    
-            /* Marca de agua */
-            #watermark, #watermark2 {
-            position: absolute;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 14px;
-            transform: rotate(0deg);
-            user-select: none;
+        h1 {
+            text-align: center;
         }
-    
-        #watermark {
-            top: 1px;
-            bottom: 10px;
-            left: 15px;
-        }
-    
-        #watermark2 {
-            bottom: 10px;
-        }
-    
-        /* Botones */
         .button-container {
             display: flex;
-            gap: 30px;
-            margin-top: 15px;
+            gap: 20px;
+            margin-top: 20px;
         }
-    
         .button {
-            padding: 10px 22px;
-            font-size: 14px;
+            padding: 10px 20px;
+            font-size: 16px;
             cursor: pointer;
             border: none;
-            border-radius: 40px;
+            border-radius: 5px;
             outline: none;
         }
-    
         #si-button {
             background-color: green;
             color: white;
-            user-select: none;
-            box-shadow: -2px 2px 50px #00c000;
         }
-    
         #no-button {
             background-color: red;
             color: white;
-            user-select: none;
-            box-shadow: -2px 2px 50px #f20044;
         }
-    
-        #si-button:hover, #no-button:hover {
-            cursor: crosshair;
-        }
-    
-            /* Cursor */
-            #cursor {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 10px;
-            height: 10px;
-            box-shadow: 0 0 150px rgb(68, 175, 218);
-            border-radius: 50%;
-            cursor: none;
-            background-color: #0f0;
-            pointer-events: none;
-            animation: animate 5s linear infinite;
-        }
-    
-        @keyframes animate {
-        0% {
-        filter: drop-shadow(0 0 15px #0f0) drop-shadow(0 0 15px #0f0) drop-shadow(0 0 30px #0f0) hue-rotate(0deg);
-        }
-        100% {
-        filter: drop-shadow(0 0 15px #0f0) drop-shadow(0 0 15px #0f0) drop-shadow(0 0 30px #0f0) hue-rotate(360deg);
-         }
-        }
-    
-            /* Luz circular */
-            .spotlight {
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            background-image: radial-gradient(circle, transparent 50px, rgba(0, 0, 0, 0.3) 200px);
-            pointer-events: none;
-        }
-    
-            /* Contador de clics */
-            #click-counter {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            background-color: transparent rgba(0, 0, 0, 0.1);
-            color: rgba(255, 255, 255, 0.5);
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 16px;
-            font-family: Arial, sans-serif;
-            pointer-events: none;
-        }
-            h1 {
-            text-align: center;
-            user-select: none;
-            text-shadow: 0px 6px 0px black;
-        }
+/* Estilo inicial del 'box-shadow' */
+    #custom-shadow {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 183, 255, 0) 100%, rgba(0, 183, 255, 0.8) 100%);
+      position: absolute;
+      pointer-events: none;
+      cursor: none;
+      transform: translate(-50%, -50%);
+      transition: transform 0.3s ease-in-out;
+      box-shadow: 0 0 150px rgb(68, 175, 218); /* También añadiendo transparencia al box-shadow */
+    }
+
+#si-button:hover {
+    cursor: crosshair;
+}
+
+#no-button:hover {
+    cursor: crosshair;
+}
+
     </style>
-    
+</head>
+
 <body>
-    <h1>¿Eres Gay?</h1>
-    <div class="spotlight"></div>
-    <div id="click-counter">0</div>  <!-- id'contador de click'-->
-    <div id="cursor"></div> <!-- id'cursor'-->
-
-    <div id="watermark">By colega</div> <!-- id'marca de agua'-->
-    <div id="watermark2">version 1.5B</div> <!-- id'marca de agua2'-->
-
+    <h1>¿Eres Ga?</h1>
     <div class="button-container">
-    <button class="button" id="si-button" onclick="respuesta('si')">Sí</button>
-    <button class="button" id="no-button" onclick="respuesta('no')">No</button>
+        <button class="button" id="si-button" onclick="respuesta('si')">Sí</button>
+        <button class="button" id="no-button" onclick="respuesta('no')">No</button>
     </div>
 
-    <script>
-            document.addEventListener("DOMContentLoaded", () => {
-            // Variables
-            const cursor = document.getElementById("cursor");
-            const watermark = document.getElementById('watermark');
-            const watermark2 = document.getElementById('watermark2');
-            const botonNo = document.getElementById('no-button');
-            const clickCounter = document.getElementById('click-counter');
-            let currentAudio = null;
-            let intervalo = 500;
-            let clickCount = 0;
-    
-            // Configuración para dispositivos móviles
-            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-            intervalo = 300;
-            watermark.style.fontSize = '18px';
-            watermark2.style.fontSize = '18px';
-            }
-    
-            // Seguir el cursor
-            document.addEventListener("mousemove", (e) => {
-            if (Math.random() > 0.1) {
-            cursor.style.left = e.clientX - cursor.offsetWidth / 2 + "px";
-            cursor.style.top = e.clientY - cursor.offsetHeight / 2 + "px";
-            }});
-    
-            // Reproducir sonido
-            function playSound() {
-            if (currentAudio && !currentAudio.paused) return;
-            currentAudio = new Audio('audio.mp3');
-            currentAudio.play();
-            }
-    
-            // Evento al hacer clic
-            function handleMouseClick(event) {
-            playSound();
-            updateClickCount();
-            }
-            document.addEventListener('click', handleMouseClick);
-    
-            // Mover botón 'No' aleatoriamente
-            setInterval(moverBotonNoAleatoriamente, intervalo);
-            function moverBotonNoAleatoriamente() {
-            const maxX = window.innerWidth - botonNo.offsetWidth;
-            const maxY = window.innerHeight - botonNo.offsetHeight;
-            const randomX = Math.floor(Math.random() * maxX);
-            const randomY = Math.floor(Math.random() * maxY);
-            botonNo.style.position = 'absolute';
-            botonNo.style.left = randomX + 'px';
-            botonNo.style.top = randomY + 'px';
-            }
-            
-        // Actualizar contador de clics
-        function updateClickCount() {
-        clickCount++;
-        clickCounter.textContent = clickCount;
-        }});    
-    
-        // Manejar respuestas a los botones
-        function respuesta(respuesta) {
-        if (respuesta === 'si' || respuesta === 'no') {
-        setTimeout(() => {
-        location.reload();
-        }, 1000);
-        if (respuesta === 'si') {
-        alert('Desde ahora eres Gay');
-        } else {
-        alert('Tu sin duda alguna eres el más hetero de tu casa');
-        } }}
+<!-- Elemento para el 'box-shadow' del ratón -->
+<div id="custom-shadow"></div>
 
-</script>
+  <script>
+
+// Elemento para el 'box-shadow' del ratón
+  var customShadow = document.getElementById('custom-shadow');
+
+  // Función para actualizar el 'box-shadow'
+  function updateShadow(event) {
+    var mouseX = event.clientX;
+    var mouseY = event.clientY;
+
+    // Actualizar el 'box-shadow' según la posición del ratón
+    customShadow.style.left = mouseX - 2 + 'px'; // Ajuste para centrar el círculo
+    customShadow.style.top = mouseY - 3 + 'px'; // Ajuste para centrar el círculo
+  }
+
+  // Actualizar el 'box-shadow' mientras el ratón se mueve
+  document.addEventListener('mousemove', function(event) {
+    updateShadow(event);
+  });
+
+  // Asociar la función updateShadow al evento 'click' en el documento
+  document.addEventListener('click', function(event) {
+    updateShadow(event);
+  });
+
+    var currentAudio = null;
+
+    function playSound() {
+      if (currentAudio && !currentAudio.paused) {
+        return;
+      }
+
+      var audio = new Audio('audio.mp3');
+      audio.play();
+      currentAudio = audio;
+    }
+
+    function handleMouseClick(event) {
+      playSound();
+    }
+
+    document.addEventListener('click', handleMouseClick);
+
+function respuesta(respuesta) {
+if (respuesta === 'si') {
+        setTimeout(function() {
+            location.reload(); // Recarga la página
+        }, 1000);
+        alert('Desde ahora eres ');
+    } 
+else if (respuesta === 'no') {
+         setTimeout(function() {
+            location.reload(); // Recarga la página
+        }, 1000);
+        alert('Tu sin duda alguna eres el más hetero de tu casa');
+    }
+}
+
+    setInterval(moverBotonNoAleatoriamente, 500);
+
+    function moverBotonNoAleatoriamente() {
+      var botonNo = document.getElementById('no-button');
+      var maxX = window.innerWidth - botonNo.offsetWidth;
+      var maxY = window.innerHeight - botonNo.offsetHeight;
+
+      var randomX = Math.floor(Math.random() * maxX);
+      var randomY = Math.floor(Math.random() * maxY);
+
+      botonNo.style.position = 'absolute';
+      botonNo.style.left = randomX + 'px';
+      botonNo.style.top = randomY + 'px';
+    }
+  </script>
 </body>
 </html>
+
