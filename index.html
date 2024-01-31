@@ -20,6 +20,8 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
+            background-repeat: repeat-y;
+            background-color: #0b1522;
             margin: 0;
             overflow: hidden;
         }
@@ -81,108 +83,6 @@
         filter: drop-shadow(0 0 15px #0f0) drop-shadow(0 0 15px #0f0) drop-shadow(0 0 30px #0f0) hue-rotate(360deg);
          }
         }
-    
-            /* Luz circular */
-            .spotlight {
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            background-image: radial-gradient(circle, transparent 50px, rgba(0, 0, 0, 0.3) 200px);
-            pointer-events: none;
-        }
-
- 
-            h1 {
-            text-align: center;
-            user-select: none;
-            text-shadow: 0px 6px 0px black;
-        }
     </style>
-    
-<body>
-    <h1>¿Eres Gay?</h1>
-    <div class="spotlight"></div>
-    <div id="click-counter">0</div>  <!-- id'contador de click'-->
-    <div id="cursor"></div> <!-- id'cursor'-->
-
-    <div id="watermark">By colega</div> <!-- id'marca de agua'-->
-    <div id="watermark2">version 1.5B</div> <!-- id'marca de agua2'-->
-
-    <div class="button-container">
-    <button class="button" id="si-button" onclick="respuesta('si')">Sí</button>
-    <button class="button" id="no-button" onclick="respuesta('no')">No</button>
-    </div>
-
-    <script>
-            document.addEventListener("DOMContentLoaded", () => {
-            // Variables
-            const cursor = document.getElementById("cursor");
-            const watermark = document.getElementById('watermark');
-            const watermark2 = document.getElementById('watermark2');
-            const botonNo = document.getElementById('no-button');
-            const clickCounter = document.getElementById('click-counter');
-            let currentAudio = null;
-            let intervalo = 500;
-            let clickCount = 0;
-    
-            // Configuración para dispositivos móviles
-            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-            intervalo = 300;
-            watermark.style.fontSize = '18px';
-            watermark2.style.fontSize = '18px';
-            }
-    
-            // Seguir el cursor
-            document.addEventListener("mousemove", (e) => {
-            if (Math.random() > 0.1) {
-            cursor.style.left = e.clientX - cursor.offsetWidth / 2 + "px";
-            cursor.style.top = e.clientY - cursor.offsetHeight / 2 + "px";
-            }});
-    
-            // Reproducir sonido
-            function playSound() {
-            if (currentAudio && !currentAudio.paused) return;
-            currentAudio = new Audio('audio.mp3');
-            currentAudio.play();
-            }
-    
-            // Evento al hacer clic
-            function handleMouseClick(event) {
-            playSound();
-            updateClickCount();
-            }
-            document.addEventListener('click', handleMouseClick);
-    
-            // Mover botón 'No' aleatoriamente
-            setInterval(moverBotonNoAleatoriamente, intervalo);
-            function moverBotonNoAleatoriamente() {
-            const maxX = window.innerWidth - botonNo.offsetWidth;
-            const maxY = window.innerHeight - botonNo.offsetHeight;
-            const randomX = Math.floor(Math.random() * maxX);
-            const randomY = Math.floor(Math.random() * maxY);
-            botonNo.style.position = 'absolute';
-            botonNo.style.left = randomX + 'px';
-            botonNo.style.top = randomY + 'px';
-            }
-            
-        // Actualizar contador de clics
-        function updateClickCount() {
-        clickCount++;
-        clickCounter.textContent = clickCount;
-        }});    
-    
-        // Manejar respuestas a los botones
-        function respuesta(respuesta) {
-        if (respuesta === 'si' || respuesta === 'no') {
-        setTimeout(() => {
-        location.reload();
-        }, 1000);
-        if (respuesta === 'si') {
-        alert('Desde ahora eres Gay');
-        } else {
-        alert('Tu sin duda alguna eres el más hetero de tu casa');
-        } }}
-
-</script>
 </body>
 </html>
